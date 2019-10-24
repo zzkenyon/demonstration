@@ -1,0 +1,8 @@
+app:
+  mail:
+    enable: false
+    default-subject: This is dev env
+
+  message:
+    from: myapp
+    size: 1MB

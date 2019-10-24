@@ -1,0 +1,9 @@
+app:
+  mail:
+    enable: true
+    default-subject: This is prod env
+
+  message:
+    from: myapp
+    size: 1KB
+

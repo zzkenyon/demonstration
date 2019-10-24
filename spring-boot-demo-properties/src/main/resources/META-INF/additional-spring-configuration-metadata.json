@@ -1,0 +1,25 @@
+{
+  "properties": [
+    {
+      "name": "app.mail.default-subject",
+      "description": "默认主题.",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "app.mail.enable",
+      "description": "邮件功能开关.",
+      "type": "java.lang.Boolean",
+      "defaultValue": true
+    },
+    {
+      "name": "app.message.from",
+      "description": "发送方.",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "app.message.size",
+      "description": "信息最大大小.",
+      "type": "org.springframework.util.unit.DataSize"
+    }
+  ]
+}
