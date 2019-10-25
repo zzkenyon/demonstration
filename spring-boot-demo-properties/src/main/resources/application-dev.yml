@@ -2,7 +2,22 @@ app:
   mail:
     enable: false
     default-subject: This is dev env
+    smtp-server:
+      - 10.0.23.12
+      - 10.0.23.61
+      - 10.0.23.89
+    from: zhaozhengkang
+    size: 20KB
+    time: 2s
+    max-weight: 1KG
 
   message:
-    from: myapp
-    size: 1MB
+    from: ADA
+    size: 20KB
+    time: 2s
+
+  developer:
+    name: zhaozhengkang
+    mail-address: zhaozhengkang@cetiti.com
+
+

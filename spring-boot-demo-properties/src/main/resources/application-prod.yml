@@ -1,7 +1,7 @@
 app:
   mail:
     enable: true
-    default-subject: This is prod env
+    smtp-server:
 
   message:
     from: myapp
