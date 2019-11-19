@@ -13,6 +13,7 @@
         <module>spring-boot-demo-properties</module>
         <module>spring-boot-demo-actuator</module>
         <module>spring-boot-demo-swagger</module>
+        <module>spring-boot-demo-swagger-battcn</module>
     </modules>
 
     <properties>
@@ -43,6 +44,17 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>http://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>ailiyun</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
 
     <build>
         <pluginManagement>
