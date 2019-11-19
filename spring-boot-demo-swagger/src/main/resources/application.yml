@@ -1,0 +1,8 @@
+server:
+  port: 8082
+
+
+logging:
+  level:
+    #解决swagger异常AbstractSerializableParameter常显示问题，该异常不影响使用，系swagger自身bug
+    io.swagger.models.parameters.AbstractSerializableParameter: error
