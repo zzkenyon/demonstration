@@ -15,11 +15,7 @@ public class SpringBootDemoActuatorApplication {
 
     @GetMapping(value = "/")
     public String sayHello(){
-        try {
-            Thread.sleep(1234);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return "Hello world!";
     }
+
 }
