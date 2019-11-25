@@ -16,12 +16,13 @@
         <module>spring-boot-demo-swagger-battcn</module>
         <module>spring-boot-demo-returnformat</module>
         <module>spring-boot-demo-cache-redis</module>
+        <module>spring-boot-demo-starter</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring.boot.version>2.2.0.RELEASE</spring.boot.version>
@@ -49,13 +50,14 @@
 
     <repositories>
         <repository>
-            <id>central</id>
-            <url>http://repo1.maven.org/maven2/</url>
-        </repository>
-        <repository>
             <id>aliyun</id>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
         </repository>
+
+        <!--<repository>
+            <id>central</id>
+            <url>http://repo1.maven.org/maven2/</url>
+        </repository>-->
     </repositories>
 
     <build>
