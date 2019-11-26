@@ -25,7 +25,7 @@ logging:
   level:
     root: info
   file:
-    path: ./logs
+    path: ./sping-boot-demo-actuator/logs
 
 spring:
   security:
