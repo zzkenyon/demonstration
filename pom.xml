@@ -17,6 +17,9 @@
         <module>spring-boot-demo-returnformat</module>
         <module>spring-boot-demo-cache-redis</module>
         <module>spring-boot-demo-starter</module>
+        <module>spring-boot-demo-mq-kafka</module>
+        <module>spring-boot-demo-mq-rabbitmq</module>
+        <module>spring-boot-demo-mongodb</module>
     </modules>
 
     <properties>
