@@ -20,6 +20,7 @@
         <module>spring-boot-demo-mq-kafka</module>
         <module>spring-boot-demo-mq-rabbitmq</module>
         <module>spring-boot-demo-mongodb</module>
+        <module>spring-boot-demo-zookeeper</module>
     </modules>
 
     <properties>
