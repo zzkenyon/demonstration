@@ -1,3 +1,7 @@
 zk:
   host: 192.168.2.112:2181
   session-time-out: 3000
+curator:
+  url: 192.168.2.112:2181
+  time-out: 3000
+  retry: 4
