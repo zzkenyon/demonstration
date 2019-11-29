@@ -1,8 +1,7 @@
 package com.pd.reids;
 
 import com.pd.reids.bean.User;
-import com.pd.reids.server.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pd.reids.service.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.repository.query.Param;

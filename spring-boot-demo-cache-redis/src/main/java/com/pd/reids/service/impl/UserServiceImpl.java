@@ -1,8 +1,8 @@
-package com.pd.reids.server.impl;
+package com.pd.reids.service.impl;
 
 import com.google.common.collect.Maps;
 import com.pd.reids.bean.User;
-import com.pd.reids.server.UserService;
+import com.pd.reids.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;

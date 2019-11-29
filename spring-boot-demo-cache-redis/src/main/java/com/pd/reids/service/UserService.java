@@ -1,4 +1,4 @@
-package com.pd.reids.server;
+package com.pd.reids.service;
 
 import com.pd.reids.bean.User;
 
