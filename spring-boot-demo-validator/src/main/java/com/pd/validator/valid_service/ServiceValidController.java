@@ -18,6 +18,7 @@ public class ServiceValidController {
     public Object hello(@RequestParam Integer id,@RequestParam String name){
         return orderService.hello(id, name);
     }
+
     @GetMapping(value = "/service_valid")
     public Order queryById(@RequestParam String id) throws Exception{
         return orderService.queryById(id);

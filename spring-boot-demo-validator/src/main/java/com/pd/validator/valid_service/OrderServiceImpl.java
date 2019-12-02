@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Service;
 
+import javax.validation.GroupSequence;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +22,7 @@ import java.util.List;
 @Slf4j
 public class OrderServiceImpl implements OrderService {
     @Override
-    public Object hello(Integer id, String name) {
+    public Object hello(@NotNull @Min(10) Integer id, @NotNull String name) {
         return null;
     }
 

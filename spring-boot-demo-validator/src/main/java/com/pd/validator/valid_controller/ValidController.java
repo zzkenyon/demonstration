@@ -2,6 +2,7 @@ package com.pd.validator.valid_controller;
 
 import com.pd.validator.annotation.NumberLength;
 import com.pd.validator.bean.Order;
+import com.pd.validator.bean.OrderItem;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -23,8 +24,14 @@ public class ValidController {
      * @param name
      */
     @GetMapping("/get_para_valid")
-    public @Length(min=4) String getParaValidated(@RequestParam @NumberLength("2,4,6") String name){
+    public @Length(min=4) String getParaValidated(
+            @RequestParam @NumberLength("2,4,6") String name){
         return name;
+    }
+
+    @GetMapping("/vo_valid")
+    public String queryByVo(OrderItem item){
+        return item.toString();
     }
 
     /**
