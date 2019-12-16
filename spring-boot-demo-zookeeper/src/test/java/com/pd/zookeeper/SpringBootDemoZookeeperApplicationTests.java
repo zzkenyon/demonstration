@@ -25,14 +25,4 @@ class SpringBootDemoZookeeperApplicationTests {
         //主线程休眠
         Thread.sleep(Integer.MAX_VALUE);
     }
-
-    /**
-     * zookeeper第三方jar包使用测试
-     * @throws Exception
-     */
-    @Test
-    void curatorTest() throws Exception{
-
-    }
-
 }
