@@ -2,7 +2,6 @@ package com.pd.helloworld.generic;
 
 import lombok.extern.slf4j.Slf4j;
 
-import javax.xml.ws.Holder;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -21,7 +20,6 @@ public class ParameterizedTypeTest {
     private  List<String> strList;
     private Class<?> aClass;
     public List aList;
-    private Holder<Double> DoubleHolder;
     protected String str;
     private Integer i;
 
