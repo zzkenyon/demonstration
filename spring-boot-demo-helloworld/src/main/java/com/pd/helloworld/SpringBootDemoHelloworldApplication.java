@@ -19,14 +19,4 @@ public class SpringBootDemoHelloworldApplication {
     public String hello(){
         return "Hello World!";
     }
-
-    /**
-     * @author zhaozhengkang
-     * @description
-     * @date 2019/12/9 14:10
-     */
-    @Bean
-    public TestBean testBean(){
-        return new TestBean("主类内部的test");
-    }
 }
