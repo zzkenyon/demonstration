@@ -35,9 +35,10 @@ public class KProducer {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         Producer<String, String> producer = new KafkaProducer<>(props);
-        for (int i = 0; i < 50; i++){
+
+        for (int i = 0; i < 1000; i++){
             System.out.println("key-->key"+i+"  value-->vvv"+i);
-            producer.send(new ProducerRecord<>("test-topic", "key"+i, "vvv"+i));
+            producer.send(new ProducerRecord<>("test-topic", "key_"+i, "value_"+i));
             Thread.sleep(1000);
         }
         producer.close();

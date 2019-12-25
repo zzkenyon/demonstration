@@ -1,4 +1,3 @@
-
 spring:
   kafka:
     bootstrap-servers: 192.168.2.112:9092,192.168.2.113:9092,192.168.2.114:9092
@@ -11,7 +10,6 @@ spring:
 
     consumer:
       group-id: spring-boot-demo
-
       enable-auto-commit: false
       auto-offset-reset: latest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer

@@ -14,7 +14,7 @@ import java.util.Properties;
  * @date 2019-12-2 20:39
  */
 public class KConsumer {
-    public KafkaConsumer<String, String> getConsmer() {
+    public KafkaConsumer<String, String> getConsumer() {
         Properties props = new Properties();
         //设置kafka服务器
         props.put("bootstrap.servers", "192.168.2.112:9092,192.168.2.113:9092,192.168.2.114:9092");
@@ -34,10 +34,9 @@ public class KConsumer {
     }
 
 
-
     public static void main(String[] args) {
         KConsumer kconsumer =  new KConsumer();
-        KafkaConsumer<String, String> consumer = kconsumer.getConsmer();
+        KafkaConsumer<String, String> consumer = kconsumer.getConsumer();
 
         consumer.subscribe(Arrays.asList("test-topic"));
         while (true) {
