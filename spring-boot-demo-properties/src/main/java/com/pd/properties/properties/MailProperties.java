@@ -9,7 +9,9 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @ConfigurationProperties(prefix = "app.mail",ignoreInvalidFields = true)
 @Component
@@ -25,4 +27,13 @@ public class MailProperties {
     private String from;
     private DataSize size;
     private Duration time;
+    private final Detail detail = new Detail();
+    private final Map<String,String> properties = new HashMap<>();
+
+    @Data
+    public static class Detail{
+        private String cTime;
+        private String uTime;
+        private Boolean isNow;
+    }
 }

@@ -1,5 +1,11 @@
 app:
   mail:
+    detail:
+      cTime: 2019-09-21
+    properties:
+      A: zzk
+      B: pjp
+      C: zpd
     enable: false
     default-subject: This is dev env
     smtp-server:
