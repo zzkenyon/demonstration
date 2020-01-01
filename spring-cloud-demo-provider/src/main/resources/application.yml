@@ -1,0 +1,13 @@
+server:
+  port: 8001
+spring:
+  application:
+     name: USER-PROVIDER #不要使用下划线
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka #告诉服务提供者要把服务注册到哪儿
+  instance:
+      prefer-ip-address: true #显示客户端真实ip
+      instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${spring.application.instance_id:${server.port}}}
+

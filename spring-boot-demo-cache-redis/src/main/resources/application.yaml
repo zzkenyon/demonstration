@@ -1,5 +1,8 @@
-
+server:
+  port: 8081
 spring:
+  application:
+    name: redis-demo
   redis:
     host: 10.0.12.74
     # 连接超时时间（记得添加单位，Duration）
@@ -23,3 +26,4 @@ spring:
 logging:
   level:
     com.xkcoding: debug
+
