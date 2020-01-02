@@ -24,7 +24,9 @@
         <module>spring-boot-demo-validator</module>
         <module>spring-cloud-demo-eurake</module>
         <module>spring-cloud-demo-provider</module>
-        <module>spring-cloud-demo-consumer</module>
+        <module>spring-cloud-demo-provider-2</module>
+        <module>spring-cloud-demo-consumer-feign</module>
+        <module>spring-cloud-demo-consumer-ribbon</module>
     </modules>
 
     <properties>
@@ -34,6 +36,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring.boot.version>2.2.0.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
         <mysql.version>8.0.12</mysql.version>
         <hutool.version>5.0.0</hutool.version>
         <guava.version>28.1-jre</guava.version>
@@ -49,19 +52,31 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
+        </dependency>
+    </dependencies>
 
     <repositories>
         <repository>
             <id>aliyun</id>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
         </repository>
-
         <!--<repository>
             <id>central</id>
             <url>http://repo1.maven.org/maven2/</url>

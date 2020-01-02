@@ -2,11 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <artifactId>spring-cloud-demo-provider</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>spring-cloud-demo-provider</name>
-    <description>Demo project for Spring cloud service provider</description>
-
     <parent>
         <artifactId>demonstration</artifactId>
         <groupId>com.pd</groupId>
@@ -14,6 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <artifactId>spring-cloud-demo-consumer-ribbon</artifactId>
     <dependencies>
         <!--springboot支持-->
         <dependency>
@@ -25,15 +21,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <!--eureka客户端支持 -->
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
     </dependencies>
+
 
 </project>

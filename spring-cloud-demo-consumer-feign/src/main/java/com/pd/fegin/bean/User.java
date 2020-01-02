@@ -1,4 +1,4 @@
-package com.pd.comsumer;
+package com.pd.fegin.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,4 +24,6 @@ public class User implements Serializable {
      * 姓名
      */
     private String name;
+
+    private String serviceId;
 }

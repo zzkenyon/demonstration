@@ -1,7 +1,8 @@
-package com.pd.comsumer;
+package com.pd.fegin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author zhaozhengkang
@@ -9,8 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020-1-1 15:34
  */
 @SpringBootApplication
-public class UserConsumerApplication_9001 {
+@EnableFeignClients
+public class UserConsumerFeign {
     public static void main(String[] args) {
-        SpringApplication.run(UserConsumerApplication_9001.class);
+        SpringApplication.run(UserConsumerFeign.class);
     }
 }

@@ -1,5 +1,6 @@
-package com.pd.comsumer;
+package com.pd.ribbon.ribbon;
 
+import com.pd.ribbon.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,11 +14,10 @@ import org.springframework.web.client.RestTemplate;
  * @date 2020-1-1 14:53
  */
 @RestController
-@RequestMapping("/consumer")
 public class    UserController {
 
     //多个方法调用只需改一处就ok
-    public static  final String URL_PREFIX = "http://localhost:8001";
+    public static  final String URL_PREFIX = "http://USER-PROVIDER";
 
     private RestTemplate restTemplate;
     @Autowired
@@ -29,6 +29,6 @@ public class    UserController {
     public User getUser(@PathVariable("id")Long id){
         //调用远程服务 http请求
         String url = URL_PREFIX+"/provider/user/"+id;
-        return restTemplate.getForObject(url,User.class );
+        return restTemplate.getForObject(url,User.class);
     }
 }

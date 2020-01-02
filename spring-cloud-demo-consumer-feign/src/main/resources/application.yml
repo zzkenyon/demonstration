@@ -1,0 +1,8 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: user-consumer-feign
+eureka:
+  client:
+    register-with-eureka: false

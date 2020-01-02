@@ -1,4 +1,4 @@
-package com.pd.provider.bean;
+package com.pd.ribbon.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
