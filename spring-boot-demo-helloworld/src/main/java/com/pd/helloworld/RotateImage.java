@@ -82,7 +82,6 @@ public class RotateImage {
         //顺时针旋转270度
         BufferedImage des3 = RotateImage.Rotate(src, 270);
         ImageIO.write(des3, "jpg", new File("E:/270.jpg"));
-
     }
 
 }
