@@ -5,10 +5,7 @@ import com.pd.reids.service.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -20,9 +17,8 @@ public class SpringBootDemoCacheRedisApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootDemoCacheRedisApplication.class, args);
     }
-
-    @GetMapping(value = "/user")
-    public User queryById(@Param("id") Long id){
+    @GetMapping(value = "/user/{id}")
+    public User queryById(@PathVariable("id") Long id){
         return service.get(id);
     }
 

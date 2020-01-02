@@ -22,6 +22,9 @@
         <module>spring-boot-demo-mongodb</module>
         <module>spring-boot-demo-zookeeper</module>
         <module>spring-boot-demo-validator</module>
+        <module>spring-cloud-demo-eurake</module>
+        <module>spring-cloud-demo-provider</module>
+        <module>spring-cloud-demo-consumer</module>
     </modules>
 
     <properties>

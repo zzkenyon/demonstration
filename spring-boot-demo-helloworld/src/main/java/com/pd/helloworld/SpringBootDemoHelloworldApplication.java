@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -15,8 +16,8 @@ public class SpringBootDemoHelloworldApplication {
         SpringApplication.run(SpringBootDemoHelloworldApplication.class, args);
     }
 
-    @GetMapping("/")
-    public String hello(){
-        return "Hello World!";
+    @GetMapping("/hello")
+    public String hello(@RequestParam String name){
+        return "Hello, "+name+ " !";
     }
 }
