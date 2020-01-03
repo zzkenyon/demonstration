@@ -24,4 +24,8 @@ public class User implements Serializable {
      * 姓名
      */
     private String name;
+
+    public String toString() {
+        return "id = " + id + " name = " + name;
+    }
 }
