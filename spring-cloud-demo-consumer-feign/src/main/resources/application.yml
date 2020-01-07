@@ -2,7 +2,15 @@ server:
   port: 9001
 spring:
   application:
-    name: user-consumer-feign
+    name: consumer-feign
 eureka:
   client:
-    register-with-eureka: false
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+feign:
+  hystrix:
+    enabled: true

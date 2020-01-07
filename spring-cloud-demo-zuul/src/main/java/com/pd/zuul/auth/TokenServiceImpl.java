@@ -26,6 +26,10 @@ import static java.lang.Integer.parseInt;
  */
 @Service
 @Slf4j
+/**
+ * JWT
+ * https://baijiahao.baidu.com/s?id=1608021814182894637&wfr=spider&for=pc
+ */
 public class TokenServiceImpl implements TokenService {
     /**
      * 时效
@@ -44,7 +48,7 @@ public class TokenServiceImpl implements TokenService {
         if( str.length() <= 28 ) {
             return 1;
         }
-        String sign = HMACSHA256(Number.hexStringtoBytes(str.substring(0, 28)));
+        String sign = hmacSHA256(Number.hexString2Bytes(str.substring(0, 28)));
         if( !str.substring(28, str.length()).equals(sign) ) {
             return 1;
         }
@@ -54,8 +58,8 @@ public class TokenServiceImpl implements TokenService {
         }*/
 
         //判断 token 是否过期
-        int timestamp = parseInt(str.substring(16,24),16);
-        if(timestamp < Time.getSecondTimestamp(new Date())) {
+        int timeStamp = parseInt(str.substring(16,24),16);
+        if(timeStamp < Time.getSecondTimestamp(new Date())) {
             return 2;
         }
         return 0;
@@ -64,13 +68,11 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public String generateToken(String id, int spanTime) {
         String uid = Number.getHexStr(parseInt(id), 8);
-        String signtime = Number.getHexStr(Time.getSecondTimestamp(new Date()), 8);
-        String expiretime = Number.getHexStr(Time.getSecondTimestamp(new Date())+spanTime, 8);
-        // TODO 修改为安全随机函数
+        String signTime = Number.getHexStr(Time.getSecondTimestamp(new Date()), 8);
+        String expireTime = Number.getHexStr(Time.getSecondTimestamp(new Date()) + spanTime, 8);
         String random = Number.getHexStr(parseInt(Number.getRandom(4)), 4);
-        String sign = HMACSHA256(Number.hexStringtoBytes(uid + signtime + expiretime + random));
-        String token = encodeBase64(Number.hexStringtoBytes(uid + signtime + expiretime + random + sign));
-        return token;
+        String sign = hmacSHA256(Number.hexString2Bytes(uid + signTime + expireTime + random));
+        return encodeBase64(Number.hexString2Bytes(uid + signTime + expireTime + random + sign));
     }
 
     @Override
@@ -78,7 +80,7 @@ public class TokenServiceImpl implements TokenService {
         if(token != null && verify(token) == 0) {
             int expire_timestamp = parseInt(decodeBase64(token).substring(16,24),16);
             int now_timestamp = Time.getSecondTimestamp(new Date());
-            int expire_time = expire_timestamp - now_timestamp;
+            int expireTime = expire_timestamp - now_timestamp;
             /*redisService.put(TOKEN_BLOCK_LIST, token, String.valueOf(expire_timestamp), expire_time);*/
             return true;
         }
@@ -100,12 +102,12 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public String getUsername(String token) {
-        String username = null;
+        String userName = null;
         if(verify(token) == 0) {
             int id = getUserId(token);
             /*username = userMapper.getUserById(id).getUsername();*/
         }
-        return username;
+        return userName;
     }
 
     @Override
@@ -114,9 +116,9 @@ public class TokenServiceImpl implements TokenService {
         return id;
     }
 
-    private String HMACSHA256(byte[] content) {
+    private String hmacSHA256(byte[] content) {
         String secret = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
-        byte[] secretByte = Number.hexStringtoBytes(secret);
+        byte[] secretByte = Number.hexString2Bytes(secret);
 
         try {
             Security.addProvider(new BouncyCastleProvider());

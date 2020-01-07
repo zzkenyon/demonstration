@@ -12,8 +12,10 @@ eureka:
   instance:
       prefer-ip-address: true #显示客户端真实ip
 
+#路由可以不配置，默认使用服务名称即可请求服务的api
+#如下配置将使用path指定的路径请求服务api，可以隐藏服务名称
 zuul:
   routes:
     user-provider:
-      path: /user/**
+      path: /user-api/**
       serviceId: user-provider

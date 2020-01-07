@@ -44,7 +44,7 @@ public class Number {
      * @param str
      * @return
      */
-    public static byte[] hexStringtoBytes(String str) {
+    public static byte[] hexString2Bytes(String str) {
         if(str == null || str.trim().equals("")) {
             return new byte[0];
         }

@@ -14,21 +14,15 @@ import org.springframework.web.client.RestTemplate;
  * @date 2020-1-1 14:53
  */
 @RestController
-public class    UserController {
-
-    //多个方法调用只需改一处就ok
-    public static  final String URL_PREFIX = "http://USER-PROVIDER";
-
-    private RestTemplate restTemplate;
+public class UserController {
+    private UserService userService;
     @Autowired
-    public void setRestTemplate(RestTemplate template){
-        this.restTemplate = template;
+    public void setUserService(UserServiceImpl userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/user/{id}")
     public User getUser(@PathVariable("id")Long id){
-        //调用远程服务 http请求
-        String url = URL_PREFIX+"/provider/user/"+id;
-        return restTemplate.getForObject(url,User.class);
+        return userService.getUser(id);
     }
 }
