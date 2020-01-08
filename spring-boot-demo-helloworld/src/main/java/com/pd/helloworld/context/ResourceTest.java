@@ -21,9 +21,9 @@ public class ResourceTest {
     private static void dumpStream(Resource resource) {
         InputStream is = null;
         try {
-//1.获取文件资源
+        //1.获取文件资源
             is = resource.getInputStream();
-//2.读取资源
+        //2.读取资源
             byte[] descBytes = new byte[is.available()];
             is.read(descBytes);
             System.out.println(new String(descBytes));
