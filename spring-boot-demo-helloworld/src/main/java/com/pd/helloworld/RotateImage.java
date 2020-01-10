@@ -19,20 +19,20 @@ public class RotateImage {
      * @param angel 旋转角度
      * @return 旋转后的图片
      */
-    public static BufferedImage Rotate(Image src, int angel) {
-        int src_width = src.getWidth(null);
-        int src_height = src.getHeight(null);
+    public static BufferedImage rotate(Image src, int angel) {
+        int srcWidth = src.getWidth(null);
+        int srcHeight = src.getHeight(null);
         // 计算旋转后图片的尺寸
-        Rectangle rect_des = CalcRotatedSize(new Rectangle(new Dimension(
-                src_width, src_height)), angel);
+        Rectangle rectDes = calcRotatedSize(new Rectangle(new Dimension(
+                srcWidth, srcHeight)), angel);
         BufferedImage res = null;
-        res = new BufferedImage(rect_des.width, rect_des.height,
+        res = new BufferedImage(rectDes.width, rectDes.height,
                 BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = res.createGraphics();
         // 进行转换
-        g2.translate((rect_des.width - src_width) / 2,
-                (rect_des.height - src_height) / 2);
-        g2.rotate(Math.toRadians(angel), src_width / 2, src_height / 2);
+        g2.translate((rectDes.width - srcWidth) / 2,
+                (rectDes.height - srcHeight) / 2);
+        g2.rotate(Math.toRadians(angel), (double)srcWidth / 2, (double) srcHeight / 2);
 
         g2.drawImage(src, null, null);
         return res;
@@ -45,7 +45,7 @@ public class RotateImage {
      * @param angel 旋转角度
      * @return 旋转后的图片
      */
-    public static Rectangle CalcRotatedSize(Rectangle src, int angel) {
+    public static Rectangle calcRotatedSize(Rectangle src, int angel) {
         // 如果旋转的角度大于90度做相应的转换
         if (angel >= 90) {
             if (angel / 90 % 2 == 1) {
@@ -58,29 +58,29 @@ public class RotateImage {
 
         double r = Math.sqrt(src.height * src.height + src.width * src.width) / 2;
         double len = 2 * Math.sin(Math.toRadians(angel) / 2) * r;
-        double angel_alpha = (Math.PI - Math.toRadians(angel)) / 2;
-        double angel_dalta_width = Math.atan((double) src.height / src.width);
-        double angel_dalta_height = Math.atan((double) src.width / src.height);
+        double angelAlpha = (Math.PI - Math.toRadians(angel)) / 2;
+        double angelDaltaWidth = Math.atan((double) src.height / src.width);
+        double angelDaltaHeight = Math.atan((double) src.width / src.height);
 
-        int len_dalta_width = (int) (len * Math.cos(Math.PI - angel_alpha
-                - angel_dalta_width));
-        int len_dalta_height = (int) (len * Math.cos(Math.PI - angel_alpha
-                - angel_dalta_height));
-        int des_width = src.width + len_dalta_width * 2;
-        int des_height = src.height + len_dalta_height * 2;
-        return new Rectangle(new Dimension(des_width, des_height));
+        int lenDaltaWidth = (int) (len * Math.cos(Math.PI - angelAlpha
+                - angelDaltaWidth));
+        int lenDaltaHeight = (int) (len * Math.cos(Math.PI - angelAlpha
+                - angelDaltaHeight));
+        int desWidth = src.width + lenDaltaWidth * 2;
+        int desHeight = src.height + lenDaltaHeight * 2;
+        return new Rectangle(new Dimension(desWidth, desHeight));
     }
 
     public static void main(String[] args) throws IOException {
         BufferedImage src = ImageIO.read(new File("e:/verifyCode/zrze.jpg"));
         //顺时针旋转90度
-        BufferedImage des1 = RotateImage.Rotate(src, 90);
+        BufferedImage des1 = RotateImage.rotate(src, 90);
         ImageIO.write(des1, "jpg", new File("e:/90.jpg"));
         //顺时针旋转180度
-        BufferedImage des2 = RotateImage.Rotate(src, 180);
+        BufferedImage des2 = RotateImage.rotate(src, 180);
         ImageIO.write(des2, "jpg", new File("E:/180.jpg"));
         //顺时针旋转270度
-        BufferedImage des3 = RotateImage.Rotate(src, 270);
+        BufferedImage des3 = RotateImage.rotate(src, 270);
         ImageIO.write(des3, "jpg", new File("E:/270.jpg"));
     }
 

@@ -40,10 +40,11 @@ public class MergerImage {
         for (int i = 0; i < images.length; i++) {
             // 横向
             if (type == 1) {
-                newHeight = newHeight > images[i].getHeight() ? newHeight : images[i].getHeight();
+                newHeight = Math.max(newHeight, images[i].getHeight());
                 newWidth += images[i].getWidth();
-            } else if (type == 2) {// 纵向
-                newWidth = newWidth > images[i].getWidth() ? newWidth : images[i].getWidth();
+            } else if (type == 2) {
+                // 纵向
+                newWidth = Math.max(newWidth, images[i].getWidth());
                 newHeight += images[i].getHeight();
             }
         }
