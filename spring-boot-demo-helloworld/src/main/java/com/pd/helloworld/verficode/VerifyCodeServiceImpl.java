@@ -1,4 +1,6 @@
-package com.pd.helloworld;
+package com.pd.helloworld.verficode;
+
+import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -9,10 +11,12 @@ import java.io.OutputStream;
 import java.security.SecureRandom;
 
 /**
+ * 验证码图片生成接口的默认实现类
  * @author zhaozhengkang
  * @date 2019/12/16 15:15
  */
-public class VerifyCodeGenerator {
+@Service
+public class VerifyCodeServiceImpl implements VerifyCodeService{
     private int w = 160;
     private int h = 60;
     private SecureRandom r = new SecureRandom();
@@ -24,7 +28,7 @@ public class VerifyCodeGenerator {
     /**
      * 可选字符
      */
-    private String codes = "23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ";
+    private String codes = "3456789abcdefghjkmnpqrstuvwxyABCDEFGHJKMNPQRSTUVWXY";
     /**
      * 背景色
      */
@@ -102,7 +106,8 @@ public class VerifyCodeGenerator {
         return image;
     }
 
-    public BufferedImage getImage() {
+    @Override
+    public BufferedImage generateVerifyCode() {
         // 创建图片缓冲区
         BufferedImage image = createImage();
         // 得到绘制环境
@@ -132,11 +137,8 @@ public class VerifyCodeGenerator {
         return image;
     }
 
-    /**
-     * // 添加干扰线
-     * @return
-     */
-    public String getText() {
+    @Override
+    public String getVerifyText() {
         return text;
     }
 
@@ -152,12 +154,12 @@ public class VerifyCodeGenerator {
     }
 
     public static void main(String[] args) throws IOException{
-        VerifyCodeGenerator verifyCode = new VerifyCodeGenerator();
+        VerifyCodeServiceImpl verifyCode = new VerifyCodeServiceImpl();
         int i = 0;
         while(i++ < 100) {
-            BufferedImage img = verifyCode.getImage();
-            String str = "E:\\verifyCode\\" + verifyCode.getText();
-            VerifyCodeGenerator.output(img, new FileOutputStream(str + ".jpg"));
+            BufferedImage img = verifyCode.generateVerifyCode();
+            String str = "E:\\verifyCode\\" + verifyCode.getVerifyText();
+            VerifyCodeServiceImpl.output(img, new FileOutputStream(str + ".jpg"));
         }
     }
 }

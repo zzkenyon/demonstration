@@ -1,4 +1,4 @@
-package com.pd.helloworld;
+package com.pd.helloworld.verficode;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -22,7 +22,7 @@ public class MergerImage {
         }
         File[] src = new File[len];
         BufferedImage[] images = new BufferedImage[len];
-        int[][] ImageArrays = new int[len][];
+        int[][] imageArrays = new int[len][];
         for (int i = 0; i < len; i++) {
             try {
                 src[i] = new File(files[i]);
@@ -32,8 +32,8 @@ public class MergerImage {
             }
             int width = images[i].getWidth();
             int height = images[i].getHeight();
-            ImageArrays[i] = new int[width * height];
-            ImageArrays[i] = images[i].getRGB(0, 0, width, height, ImageArrays[i], 0, width);
+            imageArrays[i] = new int[width * height];
+            imageArrays[i] = images[i].getRGB(0, 0, width, height, imageArrays[i], 0, width);
         }
         int newHeight = 0;
         int newWidth = 0;
@@ -62,11 +62,11 @@ public class MergerImage {
             int width_i = 0;
             for (int i = 0; i < images.length; i++) {
                 if (type == 1) {
-                    ImageNew.setRGB(width_i, 0, images[i].getWidth(), newHeight, ImageArrays[i], 0,
+                    ImageNew.setRGB(width_i, 0, images[i].getWidth(), newHeight, imageArrays[i], 0,
                             images[i].getWidth());
                     width_i += images[i].getWidth();
                 } else if (type == 2) {
-                    ImageNew.setRGB(0, height_i, newWidth, images[i].getHeight(), ImageArrays[i], 0, newWidth);
+                    ImageNew.setRGB(0, height_i, newWidth, images[i].getHeight(), imageArrays[i], 0, newWidth);
                     height_i += images[i].getHeight();
                 }
             }

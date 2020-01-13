@@ -1,4 +1,4 @@
-package com.pd.helloworld;
+package com.pd.helloworld.verficode;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
