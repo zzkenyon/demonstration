@@ -20,7 +20,7 @@ public class SpringBootDemoHelloworldApplication {
      */
     public static void main(String[] args) {
         SpringApplication springApplication = new SpringApplication(SpringBootDemoHelloworldApplication.class);
-        springApplication.addInitializers(new MyContextInitializer());
+//        springApplication.addInitializers(new MyContextInitializer());
         springApplication.run(args);
     }
 

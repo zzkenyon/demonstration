@@ -1,21 +1,15 @@
 package com.pd.helloworld.verficode;
 
-import java.awt.image.BufferedImage;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author zhaozhengkang
  */
 public interface VerifyCodeService {
     /**
-     * 获取验证码信息
+     * 生成base64编码的字符串形式的图片
      * @return
      */
-    String getVerifyText();
-
-    /**
-     * 生成验证码图片
-     * @return
-     */
-    BufferedImage generateVerifyCode();
+    String createPicVerificationCode(String param,HttpServletRequest request);
 
 }
