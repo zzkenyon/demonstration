@@ -1,5 +1,10 @@
 package com.pd.reids.service;
 
+import com.pd.reids.bean.User;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * @author zhaozhengkang
  * @description
@@ -9,4 +14,10 @@ public interface RedisService {
 
     String get(String key);
     void set(String key,String val);
+
+    void hset(String key, Map<String, User> userMap);
+    User hget(String key,String hKey);
+
+    void sset(String key, User...users);
+    Set<User> ssget(String key);
 }
