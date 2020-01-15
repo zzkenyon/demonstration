@@ -4,10 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootDemoMongodbApplication {
-
+public class MongodbApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootDemoMongodbApplication.class, args);
+        SpringApplication.run(MongodbApplication.class, args);
     }
-
 }

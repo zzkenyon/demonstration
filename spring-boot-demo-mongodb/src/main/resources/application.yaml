@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+logging:
+  level:
+    org.srpingframework.data.mongodb.core: debug
