@@ -2,7 +2,6 @@ package com.pd.kafka.config;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -16,12 +15,10 @@ import org.springframework.kafka.listener.ContainerProperties;
  * @date 2019-12-25 11:02
  */
 @Configuration
-@EnableConfigurationProperties({KafkaProperties.class})
 @EnableKafka
 @AllArgsConstructor
 public class KafkaConfig {
     private final KafkaProperties kafkaProperties;
-
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
@@ -55,5 +52,4 @@ public class KafkaConfig {
         factory.setConcurrency(KafkaConstant.DEFAULT_PARTITION_NUM);
         return factory;
     }
-
 }
