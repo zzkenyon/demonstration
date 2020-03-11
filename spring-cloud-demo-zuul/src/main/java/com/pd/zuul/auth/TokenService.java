@@ -1,5 +1,7 @@
 package com.pd.zuul.auth;
 
+import com.pd.zuul.auth.util.Algorithm;
+
 import javax.servlet.http.Cookie;
 
 /**
@@ -13,16 +15,15 @@ public interface TokenService {
      * @param token Token
      * @return 0 有效   1无效   2过期
      */
-    int verify(String token);
+    int verifyToken(String token);
 
 
     /**
      * 根据用户id生成 token
-     * @param id 用户ID
-     * @param spanTime 有效时限 单位s
      * @return Token
      */
-    String generateToken(String id, int spanTime);
+    String generateToken();
+    String generateToken(Algorithm alg);
 
     /**
      *  退出登录

@@ -1,6 +1,7 @@
 package com.pd.zuul.auth;
 
 import com.google.common.io.BaseEncoding;
+import com.pd.zuul.auth.util.Algorithm;
 import com.pd.zuul.auth.util.Time;
 import com.pd.zuul.auth.util.Number;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +40,6 @@ public class TokenServiceImpl implements TokenService {
      * 黑名单
      */
     private static final String TOKEN_BLOCK_LIST="ipbank:blocktoken";
-    @Override
     public int verify(String token) {
         String str = token; // "AAABUFuFcbYORi4Hpspa2Eti769QclDdmh52H1phI7MZND2rmP5XHo3w";
         //base64解码
@@ -65,7 +65,6 @@ public class TokenServiceImpl implements TokenService {
         return 0;
     }
 
-    @Override
     public String generateToken(String id, int spanTime) {
         String uid = Number.getHexStr(parseInt(id), 8);
         String signTime = Number.getHexStr(Time.getSecondTimestamp(new Date()), 8);
@@ -73,6 +72,21 @@ public class TokenServiceImpl implements TokenService {
         String random = Number.getHexStr(parseInt(Number.getRandom(4)), 4);
         String sign = hmacSHA256(Number.hexString2Bytes(uid + signTime + expireTime + random));
         return encodeBase64(Number.hexString2Bytes(uid + signTime + expireTime + random + sign));
+    }
+
+    @Override
+    public int verifyToken(String token) {
+        return 0;
+    }
+
+    @Override
+    public String generateToken() {
+        return null;
+    }
+
+    @Override
+    public String generateToken(Algorithm alg) {
+        return null;
     }
 
     @Override

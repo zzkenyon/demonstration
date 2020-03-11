@@ -19,3 +19,4 @@ zuul:
     user-provider:
       path: /user-api/**
       serviceId: user-provider
+
