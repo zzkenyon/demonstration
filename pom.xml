@@ -29,6 +29,7 @@
         <module>spring-cloud-demo-consumer-ribbon</module>
         <module>spring-cloud-demo-zuul</module>
         <module>spring-cloud-demo-hystrix-dashboard</module>
+        <module>spring-boot-demo-shrio</module>
     </modules>
 
     <properties>
