@@ -22,7 +22,7 @@ import javax.sql.DataSource;
  * @Date: Created in 15:29 2018/3/27 0027
  * @Modified By:
  */
-@Configuration
+/*@Configuration*/
 public class DruidConfiguration {
 
     @Bean

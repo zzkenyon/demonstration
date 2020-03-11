@@ -23,7 +23,7 @@ import java.util.LinkedHashMap;
 public class ShiroConfiguration {
 
     /**
-     * 项目启动shiroFilter首先会被初始化,并且逐层传入SecurityManager，Realm，matcher
+     * 项目启动，shiroFilter首先会被初始化,并且逐层传入SecurityManager，Realm，matcher
      * @param manager
      * @return
      */
@@ -53,7 +53,7 @@ public class ShiroConfiguration {
         //druid
         filterChainDefinitonMap.put("/druid/**","anon");
         //其他请求只验证是否登陆过
-        filterChainDefinitonMap.put("/**","user");
+        filterChainDefinitonMap.put("/**","anon");
         //放入Shiro过滤器
         bean.setFilterChainDefinitionMap(filterChainDefinitonMap);
         return bean;

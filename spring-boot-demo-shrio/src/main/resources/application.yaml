@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.0.12.72:3306/enceladus?characterEncoding=UTF-8
+    username: root
+    password: C!Fr0ShoW9Nu
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+
+mybatis:
+  type-aliases-package: com.pd.shiro.model
+  configuration:
+    map-underscore-to-camel-case: true

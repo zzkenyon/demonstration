@@ -1,5 +1,7 @@
 package com.pd.shiro.model;
 
+import lombok.Data;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,44 +11,21 @@ import java.util.Set;
  * @Date: Created in 21:02 2018/3/24 0024
  * @Modified By:
  */
+@Data
 public class Role {
 
     private Integer rid;
 
-    private String rname;
+    private String roleName;
 
-    private Set<Permission> permissons = new HashSet<>();
-
-    public Integer getRid() {
-        return rid;
-    }
-
-    public void setRid(Integer rid) {
-        this.rid = rid;
-    }
-
-    public String getRname() {
-        return rname;
-    }
-
-    public void setRname(String rname) {
-        this.rname = rname;
-    }
-
-    public Set<Permission> getPermissons() {
-        return permissons;
-    }
-
-    public void setPermissons(Set<Permission> permissons) {
-        this.permissons = permissons;
-    }
+    private Set<Permission> permissions = new HashSet<>();
 
     @Override
     public String toString() {
         return "Role{" +
                 "rid=" + rid +
-                ", rname='" + rname + '\'' +
-                ", permissons=" + permissons +
+                ", roleName='" + roleName + '\'' +
+                ", permissions=" + permissions +
                 '}';
     }
 }

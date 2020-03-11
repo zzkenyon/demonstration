@@ -36,7 +36,7 @@ public class AuthRealm extends AuthorizingRealm{
 
         //session中获取用户
         User user = (User) principalCollection.fromRealm(this.getClass().getName()).iterator().next();
-        String username = user.getUsername();
+        String username = user.getUserName();
         //权限集合
         List<String> permissionList = new ArrayList<>();
         //角色集合
@@ -44,8 +44,8 @@ public class AuthRealm extends AuthorizingRealm{
         Set<Role> roleSet =  user.getRoles();
         if(!roleSet.isEmpty()){
             for(Role role : roleSet){
-                roleNameList.add(role.getRname());
-                Set<Permission> permissionSet = role.getPermissons();
+                roleNameList.add(role.getRoleName());
+                Set<Permission> permissionSet = role.getPermissions();
                 if(!permissionSet.isEmpty()){
                     for(Permission permission : permissionSet){
                         //放入权限集合
@@ -67,7 +67,7 @@ public class AuthRealm extends AuthorizingRealm{
         //从转换后的token中获取用户名的信息
         String username = usernamePasswordToken.getUsername();
         //DB获取用户的密码
-        User user = userService.findByUsername(username);
+        User user = userService.findByUserName(username);
         return new SimpleAuthenticationInfo(user,user.getPassword(),this.getClass().getName());
     }
 }

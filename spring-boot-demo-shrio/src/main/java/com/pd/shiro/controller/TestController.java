@@ -1,14 +1,18 @@
 package com.pd.shiro.controller;
 
 import com.pd.shiro.model.User;
+import com.pd.shiro.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 
@@ -20,6 +24,14 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class TestController {
+    @Resource
+    UserService userService;
+
+    @GetMapping("/getuser")
+    @ResponseBody
+    public User getuser(String userName){
+        return userService.findByUserName(userName);
+    }
 
     @RequestMapping("/login")
     public String login(){
