@@ -4,8 +4,9 @@ import com.pd.shiro.model.User;
 import com.pd.shiro.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +28,11 @@ public class TestController {
     @Resource
     UserService userService;
 
+    @RequiresRoles(value = {"admin","demo"},logical = Logical.OR)
     @GetMapping("/getuser")
     @ResponseBody
     public User getuser(String userName){
-        return userService.findByUserName(userName);
+        return userService.findUserByUserName(userName);
     }
 
     @RequestMapping("/login")
@@ -71,7 +73,7 @@ public class TestController {
     }
 
     @RequestMapping("/loginUser")
-    public String loginUser(@RequestParam("username") String username,
+    public String loginUser(@RequestParam("userName") String username,
                             @RequestParam("password") String password,
                             HttpSession session){
         System.out.println("username:"+username+",password:"+password);
@@ -90,7 +92,7 @@ public class TestController {
         }catch (Exception e){
             return "login";
         }
-
-
     }
+
+
 }

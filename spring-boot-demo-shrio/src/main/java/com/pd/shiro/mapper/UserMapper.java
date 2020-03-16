@@ -25,22 +25,22 @@ public interface UserMapper {
     @Select("SELECT uid,user_name,password FROM user WHERE user_name = #{userName}")
     @Results(id = "userMap",value = {
             @Result(id = true, column = "uid", property = "uid"),
-            @Result(property = "userName",column = "user_name"),
-            @Result(property = "password",column = "password"),
+           /* @Result(property = "userName",column = "user_name"),
+            @Result(property = "password",column = "password"),*/
             @Result(property = "roles", column = "uid",
                     many = @Many(select = "com.pd.shiro.mapper.UserMapper.findRolesByUserId"))
     })
-    User findByUserName(@Param("userName") String userName);
+    User findUserByUserName(@Param("userName") String userName);
 
     @Select("SELECT rid,role_name FROM role WHERE rid IN (SELECT rid FROM user_role WHERE uid=#{uid})")
     @Results(id = "roleMap",value = {
             @Result(id = true,column = "rid",property = "rid"),
-            @Result(property = "roleName",column = "role_name"),
+            /*@Result(property = "roleName",column = "role_name"),*/
             @Result(property = "permissions",column = "rid",
             many = @Many(select = "com.pd.shiro.mapper.UserMapper.findPermissionsByRid"))
     })
     Set<Role> findRolesByUserId(@Param("uid") Integer uid);
 
-    @Select("SELECT * FROM permission WHERE pid IN (SELECT pid FROM role_permission WHERE rid = #{rid}")
+    @Select("SELECT * FROM permission WHERE pid IN (SELECT pid FROM role_permission WHERE rid = #{rid})")
     Set<Permission> findPermissionsByRid(@Param("rid") Integer rid);
 }

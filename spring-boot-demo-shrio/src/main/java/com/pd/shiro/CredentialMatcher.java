@@ -11,7 +11,7 @@ import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
  * @Date: Created in 19:05 2018/3/26 0026
  * @Modified By:
  */
-public class Credentialmatcher extends SimpleCredentialsMatcher{
+public class CredentialMatcher extends SimpleCredentialsMatcher{
 
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
@@ -19,7 +19,7 @@ public class Credentialmatcher extends SimpleCredentialsMatcher{
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
         //获取session中的密码
         String password = new String(usernamePasswordToken.getPassword());
-        //从Relm中传递过来的数据库中的密码
+        //从Realm中传递过来的数据库中的密码
         String dbPassword = (String) info.getCredentials();
         return this.equals(password,dbPassword);
     }

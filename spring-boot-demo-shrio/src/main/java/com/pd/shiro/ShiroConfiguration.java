@@ -53,7 +53,7 @@ public class ShiroConfiguration {
         //druid
         filterChainDefinitonMap.put("/druid/**","anon");
         //其他请求只验证是否登陆过
-        filterChainDefinitonMap.put("/**","anon");
+        filterChainDefinitonMap.put("/**","user");
         //放入Shiro过滤器
         bean.setFilterChainDefinitionMap(filterChainDefinitonMap);
         return bean;
@@ -61,14 +61,14 @@ public class ShiroConfiguration {
 
     /**
      * 将定义好的Realm放入安全会话中心
-     * @param authRealm
+     * @param sqlDatabaseRealm
      * @return
      */
     @Bean("securityManager")
-    public SecurityManager securityManager(@Qualifier("authRealm") AuthRealm authRealm){
+    public SecurityManager securityManager(@Qualifier("authRealm") SqlDatabaseRealm sqlDatabaseRealm){
 
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
-        manager.setRealm(authRealm);
+        manager.setRealm(sqlDatabaseRealm);
         return manager;
     }
 
@@ -78,13 +78,13 @@ public class ShiroConfiguration {
      * @return
      */
     @Bean("authRealm")
-    public AuthRealm authRealm(@Qualifier("credentialmatcher") Credentialmatcher matcher){
+    public SqlDatabaseRealm authRealm(@Qualifier("credentialmatcher") CredentialMatcher matcher){
 
-        AuthRealm authRealm = new AuthRealm();
+        SqlDatabaseRealm sqlDatabaseRealm = new SqlDatabaseRealm();
         //信息放入缓存
-        authRealm.setCacheManager(new MemoryConstrainedCacheManager());
-        authRealm.setCredentialsMatcher(matcher);
-        return  authRealm;
+        sqlDatabaseRealm.setCacheManager(new MemoryConstrainedCacheManager());
+        sqlDatabaseRealm.setCredentialsMatcher(matcher);
+        return sqlDatabaseRealm;
     }
 
     /**
@@ -92,8 +92,8 @@ public class ShiroConfiguration {
      * @return 校验实例
      */
     @Bean("credentialmatcher")
-    public Credentialmatcher credentialmatcher(){
-        return  new Credentialmatcher();
+    public CredentialMatcher credentialmatcher(){
+        return  new CredentialMatcher();
     }
 
     /**

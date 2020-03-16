@@ -11,6 +11,6 @@
     <title>Home</title>
 </head>
 <body>
-<h1> 欢迎登陆，${user.username}</h1>
+<h1> 欢迎登陆，${user.userName}</h1>
 </body>
 </html>

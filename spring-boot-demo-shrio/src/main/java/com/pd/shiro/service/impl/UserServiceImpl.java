@@ -1,7 +1,8 @@
-package com.pd.shiro.service;
+package com.pd.shiro.service.impl;
 
 import com.pd.shiro.mapper.UserMapper;
 import com.pd.shiro.model.User;
+import com.pd.shiro.service.UserService;
 import org.springframework.stereotype.Service;
 
 
@@ -15,7 +16,7 @@ import java.util.Set;
  * @Modified By:
  */
 @Service("userService")
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Resource
     private UserMapper userMapper;
@@ -36,13 +37,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void uncorrelationRoles(Long userId, Long... roleIds) {
+    public void removeRoles(Long userId, Long... roleIds) {
 
     }
 
     @Override
-    public User findByUserName(String username) {
-        return userMapper.findByUserName(username);
+    public User findUserByUserName(String username) {
+        return userMapper.findUserByUserName(username);
     }
 
     @Override

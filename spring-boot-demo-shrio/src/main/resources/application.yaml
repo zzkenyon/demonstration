@@ -5,6 +5,7 @@ spring:
     url: jdbc:mysql://10.0.12.72:3306/enceladus?characterEncoding=UTF-8
     username: root
     password: C!Fr0ShoW9Nu
+
   mvc:
     view:
       prefix: /
