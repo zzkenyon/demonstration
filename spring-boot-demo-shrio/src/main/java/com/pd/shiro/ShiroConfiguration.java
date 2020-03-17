@@ -35,23 +35,23 @@ public class ShiroConfiguration {
         //登陆界面
         bean.setLoginUrl("/login");
         //成功后页面
-        bean.setSuccessUrl("/index");
+//        bean.setSuccessUrl("/index");
         //无权限后的页面
-        bean.setUnauthorizedUrl("/unauthorized");
+//        bean.setUnauthorizedUrl("/unauthorized");
         //键值对:请求-拦截器(权限配置)
         LinkedHashMap<String,String> filterChainDefinitonMap = new LinkedHashMap<String, String>();
         //首页地址index，使用authc过滤器进行处理
-        filterChainDefinitonMap.put("/index","authc");
+//        filterChainDefinitonMap.put("/index","authc");
         //登陆不需要任何过滤
         filterChainDefinitonMap.put("/login","anon");
         //不做身份验证
-        filterChainDefinitonMap.put("/loginUser","anon");
+//        filterChainDefinitonMap.put("/loginUser","anon");
         //只有角色中拥有admin才能访问admin
-        filterChainDefinitonMap.put("/admin","roles[admin]");
+//        filterChainDefinitonMap.put("/admin","roles[admin]");
         //拥有edit权限
-        filterChainDefinitonMap.put("/edit","perms[edit]");
+//        filterChainDefinitonMap.put("/edit","perms[edit]");
         //druid
-        filterChainDefinitonMap.put("/druid/**","anon");
+ //       filterChainDefinitonMap.put("/druid/**","anon");
         //其他请求只验证是否登陆过
         filterChainDefinitonMap.put("/**","user");
         //放入Shiro过滤器

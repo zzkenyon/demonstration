@@ -6,11 +6,6 @@ spring:
     username: root
     password: C!Fr0ShoW9Nu
 
-  mvc:
-    view:
-      prefix: /
-      suffix: .jsp
-
 mybatis:
   type-aliases-package: com.pd.shiro.model
   configuration:

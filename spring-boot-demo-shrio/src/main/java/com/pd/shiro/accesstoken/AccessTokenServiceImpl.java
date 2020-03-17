@@ -58,6 +58,7 @@ public class AccessTokenServiceImpl implements AccessTokenService {
         return 0;
     }
 
+    @Override
     public String generateToken(String id, int spanTime) {
         String uid = Number.getHexStr(parseInt(id), 8);
         String signTime = Number.getHexStr(Time.getSecondTimestamp(new Date()), 8);

@@ -23,6 +23,7 @@ public interface AccessTokenService {
      * @return Token
      */
     String generateToken();
+    String generateToken(String id, int spanTime);
     String generateToken(Algorithm alg);
 
     /**
