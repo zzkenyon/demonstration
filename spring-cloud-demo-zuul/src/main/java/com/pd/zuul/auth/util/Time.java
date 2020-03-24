@@ -6,6 +6,9 @@ package com.pd.zuul.auth.util;
 
 import java.util.Date;
 
+/**
+ * @author zhaozhengkang
+ */
 public class Time {
 
 

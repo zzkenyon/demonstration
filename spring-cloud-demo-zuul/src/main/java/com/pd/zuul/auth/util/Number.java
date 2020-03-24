@@ -8,23 +8,16 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
+/**
+ *
+ * @author zhaozhengkang
+ */
 public class Number {
 
-    /**
-     * 获取指定int的16进制
-     * @param num
-     * @return
-     */
     public static String getHexStr(int num) {
         return Integer.toHexString(num);
     }
-
-    /**
-     * 指定十六进制位数，前补0
-     * @param num
-     * @param length
-     * @return
-     */
+    // 指定十六进制位数，前补0
     public static String getHexStr(int num, int length) {
         String str = Integer.toHexString(num);
         if(str.length() < length ){
@@ -39,12 +32,8 @@ public class Number {
         return Integer.toHexString(Integer.valueOf(num));
     }
 
-    /**
-     * 十六进制字符串转byte
-     * @param str
-     * @return
-     */
-    public static byte[] hexString2Bytes(String str) {
+    //十六进制字符串转byte
+    public static byte[] hexStringToBytes(String str) {
         if(str == null || str.trim().equals("")) {
             return new byte[0];
         }
@@ -56,11 +45,7 @@ public class Number {
         return bytes;
     }
 
-    /**
-     * 字节数组转十六进制字符串
-     * @param bytes
-     * @return
-     */
+    //字节数组转十六进制字符串
     public static String bytesToHexString(byte[] bytes){
         StringBuilder buf = new StringBuilder(bytes.length * 2);
         for(byte b : bytes) { // 使用String的format方法进行转换
@@ -71,12 +56,7 @@ public class Number {
     }
 
 
-    /**
-     * byte数组合并
-     * @param byte_1
-     * @param byte_2
-     * @return
-     */
+    // byte数组合并
     public static byte[] byteMerger(byte[] byte_1, byte[] byte_2) {
         byte[] byte_3 = new byte[byte_1.length + byte_2.length];
         System.arraycopy(byte_1, 0, byte_3, 0, byte_1.length);
@@ -84,16 +64,17 @@ public class Number {
         return byte_3;
     }
 
+
     public static String getSalt() {
         String sequence = "1234567890abcdefghijklmnopqrstuvwxyz";
         int length = 6;
-        StringBuilder str = new StringBuilder();
+        String str = "";
         for (int a = 0; a < length; a++) {
             int t = (int) (Math.random()*sequence.length());
             char ch = sequence.charAt(t);
-            str .append(ch);
+            str = str + String.valueOf(ch);
         }
-        return str.toString();
+        return str;
     }
 
     public static String getRandom(int length) {
