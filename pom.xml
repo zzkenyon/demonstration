@@ -30,6 +30,8 @@
         <module>spring-cloud-demo-zuul</module>
         <module>spring-cloud-demo-hystrix-dashboard</module>
         <module>spring-boot-demo-shrio</module>
+        <module>spring-boot-demo-cache-memcache</module>
+        <module>spring-boot-demo-elasticsearch</module>
     </modules>
 
     <properties>
