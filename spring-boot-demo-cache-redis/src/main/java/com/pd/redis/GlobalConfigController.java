@@ -1,18 +1,10 @@
-package com.pd.reids;
+package com.pd.redis;
 
-import com.alibaba.fastjson.JSON;
-import com.pd.reids.bean.ConfigBean;
-import com.pd.reids.service.GlobalConfigService;
-import com.pd.reids.service.RedisService;
+import com.pd.redis.bean.ConfigBean;
+import com.pd.redis.service.GlobalConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Random;
 
 /**
  * @author zhaozhengkang

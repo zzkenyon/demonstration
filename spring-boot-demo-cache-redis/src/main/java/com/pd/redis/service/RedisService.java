@@ -1,6 +1,6 @@
-package com.pd.reids.service;
+package com.pd.redis.service;
 
-import com.pd.reids.bean.User;
+import com.pd.redis.bean.User;
 
 import java.util.Map;
 import java.util.Set;

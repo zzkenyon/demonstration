@@ -1,8 +1,8 @@
-package com.pd.reids;
+package com.pd.redis;
 
-import com.pd.reids.bean.User;
-import com.pd.reids.service.RedisService;
-import com.pd.reids.service.UserService;
+import com.pd.redis.bean.User;
+import com.pd.redis.service.RedisService;
+import com.pd.redis.service.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;

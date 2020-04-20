@@ -1,8 +1,7 @@
-package com.pd.reids.service.impl;
+package com.pd.redis.service.impl;
 
-import com.pd.reids.service.RedisService;
+import com.pd.redis.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**

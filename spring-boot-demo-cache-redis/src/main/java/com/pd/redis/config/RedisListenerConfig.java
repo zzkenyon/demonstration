@@ -1,6 +1,6 @@
-package com.pd.reids.config;
+package com.pd.redis.config;
 
-import com.pd.reids.service.impl.RedisMessageReceiver;
+import com.pd.redis.service.impl.RedisMessageReceiver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

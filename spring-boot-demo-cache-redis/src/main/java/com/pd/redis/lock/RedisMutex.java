@@ -1,8 +1,10 @@
-package com.pd.reids.lock;
+package com.pd.redis.lock;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.exceptions.JedisException;
 
 import java.util.UUID;
@@ -15,40 +17,39 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class RedisMutex {
-    private static final String LOCK_KEY = "dis_lock";
-    private Jedis jedis = null;
     private final Object LOCAL_LOCK = new Object();
-
+    private JedisPool pool;
+    @Autowired
+    public void setPool(JedisPool pool) {
+        this.pool = pool;
+    }
 
     public static void main(String[] args) {
         RedisMutex de = new RedisMutex();
-        String lockId = de.lock();
-        de.unlock(lockId);
-    }
-    public String lock(){
-        return lock(5000);
     }
 
     /**
      *
      * @param acquireTimeOut  获取分布式锁超时时间，
      */
-    public String lock(long acquireTimeOut) throws JedisException {
+    public boolean lock(String key,long acquireTimeOut) throws JedisException {
+        log.info("开始获取锁");
+        Jedis jedis = pool.getResource();
         try {
             long end = System.currentTimeMillis() + acquireTimeOut;
-            jedis = new Jedis("10.0.12.74",6379);
             while(System.currentTimeMillis()<end){
                 String lockValue = UUID.randomUUID().toString();
                 synchronized (LOCAL_LOCK) {
-                    if (1 == jedis.setnx(LOCK_KEY, lockValue)) {
-                        return lockValue;
+                    if(1==jedis.setnx(key,lockValue)){
+                        return true;
+                    }else{
+                        //暂停一下再竞争锁
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                        }
                     }
-                }
-                //暂停一下再竞争锁
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
                 }
             }
         }catch (JedisException je){
@@ -56,19 +57,15 @@ public class RedisMutex {
         }finally {
             jedis.close();
         }
-        return null;
+        return false;
     }
 
 
-    public synchronized void unlock(String lockId){
+    public void unlock(String lockKey){
+        Jedis jedis = pool.getResource();
         try {
-            Jedis jedis = new Jedis("10.0.12.74",6379);
-            synchronized (LOCAL_LOCK) {
-                if (jedis.get(LOCK_KEY).equals(lockId)) {
-                    jedis.del(LOCK_KEY);
-                }else {
-                    throw new IllegalArgumentException("分布式锁ID错误");
-                }
+            synchronized (LOCAL_LOCK){
+                jedis.del(lockKey);
             }
         }catch (JedisException je){
             log.info(je.getMessage());

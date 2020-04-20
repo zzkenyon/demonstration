@@ -1,9 +1,8 @@
-package com.pd.reids.service.impl;
+package com.pd.redis.service.impl;
 
-import com.pd.reids.bean.User;
-import com.pd.reids.service.RedisService;
+import com.pd.redis.bean.User;
+import com.pd.redis.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;

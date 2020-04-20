@@ -1,4 +1,4 @@
-package com.pd.reids.config;
+package com.pd.redis.config;
 
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -68,7 +68,7 @@ public class RedisConfig {
      * @param redisTemplate
      * @return
      */
-    @Bean
+    @Bean("redisForString")
     public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForValue();
     }
