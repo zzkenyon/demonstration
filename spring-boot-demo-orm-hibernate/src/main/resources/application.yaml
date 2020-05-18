@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://10.0.12.72:3306/mybatis-demo?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: C!Fr0ShoW9Nu
+    initialization-mode: always
+    continue-on-error: true
