@@ -1,7 +1,5 @@
 package com.pd.zookeeper;
 
-import com.pd.zookeeper.curator.annotation.ZooLock;
-import com.pd.zookeeper.curator.aspectj.DistributedLockAspect;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.zookeeper.CreateMode;
@@ -12,16 +10,11 @@ import org.apache.zookeeper.data.Id;
 import org.apache.zookeeper.data.Stat;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Collections;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.IntStream;
 
 /**
  * @author zhaozhengkang

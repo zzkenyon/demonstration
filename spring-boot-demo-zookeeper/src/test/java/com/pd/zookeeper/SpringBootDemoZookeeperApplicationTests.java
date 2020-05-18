@@ -15,7 +15,6 @@ class SpringBootDemoZookeeperApplicationTests {
 
     /**
      * zookeeper官方jar包使用测试
-     * @throws Exception
      */
     @Test
     void zkTest() throws Exception{
