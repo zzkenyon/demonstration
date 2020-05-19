@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class BaseRowMapper<T> implements RowMapper<T> {
     private Class<?> targetClazz;
-    private Map<String, Field> fieldMap;
+    private Map<String, Field> fieldMap = new HashMap<>(8);
 
 
     public BaseRowMapper(Class<?> clazz){

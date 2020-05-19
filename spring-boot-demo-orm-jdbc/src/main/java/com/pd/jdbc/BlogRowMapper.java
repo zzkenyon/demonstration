@@ -10,7 +10,7 @@ import java.sql.SQLException;
  * @author: zhaozhengkang
  * @date: 2020-05-18 12:53
  */
-public class BlogRowMap implements RowMapper<Blog> {
+public class BlogRowMapper implements RowMapper<Blog> {
     @Override
     public Blog mapRow(ResultSet rs, int rowNum) throws SQLException {
         Blog b = new Blog();

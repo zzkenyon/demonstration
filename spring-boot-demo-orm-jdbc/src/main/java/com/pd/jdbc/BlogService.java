@@ -15,8 +15,14 @@ import java.util.List;
 public class BlogService {
     @Autowired
     JdbcTemplate template;
+
     public List<Blog> listBlog(){
         String sql = "select * from blog";
         return template.query(sql,new BaseRowMapper<>(Blog.class));
+    }
+
+    public Integer deleteAll(){
+        String sql = "delete from blog where 1=1";
+        return template.update(sql);
     }
 }
