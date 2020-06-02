@@ -34,6 +34,7 @@
         <module>spring-boot-demo-elasticsearch</module>
         <module>spring-boot-demo-orm-jdbc</module>
         <module>spring-boot-demo-orm-hibernate</module>
+        <module>spring-boot-dubbo-demo-provider</module>
     </modules>
 
     <properties>
