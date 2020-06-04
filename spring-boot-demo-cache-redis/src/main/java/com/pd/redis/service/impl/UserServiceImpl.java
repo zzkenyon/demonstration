@@ -57,6 +57,7 @@ public class UserServiceImpl implements UserService {
      * @param id key值
      * @return 返回结果
      */
+ //
     @Cacheable(value = "user", key = "#id")
     @Override
     public User get(Long id) {

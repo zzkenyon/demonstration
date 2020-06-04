@@ -1,0 +1,25 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: redis-demo
+  redis:
+    host: localhost #10.0.12.74
+    #cluster:
+      #nodes: 192.168.2.116:8001,192.168.2.116:8002,192.168.2.116:8003,192.168.2.116:8004,192.168.2.116:8005,192.168.2.116:8006
+
+    timeout: 10000ms  # 连接超时时间（记得添加单位，Duration）
+    lettuce:
+      pool:
+        max-wait: -1ms  # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-idle: 8   # 连接池中的最大空闲连接 默认 8
+        min-idle: 0  # 连接池中的最小空闲连接 默认 0
+        max-active: 8
+
+  cache:
+    type: redis  # 一般来说是不用配置的，Spring Cache 会根据依赖的包自行装配
+
+logging:
+  level:
+    com.xkcoding: debug
+

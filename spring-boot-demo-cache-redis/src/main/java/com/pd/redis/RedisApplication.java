@@ -1,6 +1,7 @@
 package com.pd.redis;
 
 import com.pd.redis.bean.User;
+import com.pd.redis.limiter.AccessLimiter;
 import com.pd.redis.service.RedisService;
 import com.pd.redis.service.UserService;
 import org.springframework.boot.SpringApplication;
@@ -21,6 +22,8 @@ public class RedisApplication {
     public static void main(String[] args) {
         SpringApplication.run(RedisApplication.class, args);
     }
+
+    @AccessLimiter(perSec = 1)
     @GetMapping(value = "/user/{id}")
     public User queryById(@PathVariable("id") Long id){
         return service.get(id);

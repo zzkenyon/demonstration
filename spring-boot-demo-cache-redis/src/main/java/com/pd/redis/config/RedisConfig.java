@@ -19,22 +19,18 @@ import org.springframework.data.redis.serializer.*;
  * @date 2019/11/21 12:48
  */
 @Configuration
-@AutoConfigureAfter(RedisAutoConfiguration.class)
-@EnableCaching
 public class RedisConfig {
     /**
      * 默认情况下的模板只能支持RedisTemplate<String, String>，也就是只能存入字符串，因此支持序列化
      */
     @Bean
-    public RedisTemplate<String, Object> redisCacheTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
-        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        GenericFastJsonRedisSerializer fastJsonRedisSerializer = new GenericFastJsonRedisSerializer();
         template.setConnectionFactory(redisConnectionFactory);
-        template.setKeySerializer(stringRedisSerializer);
-        template.setValueSerializer(fastJsonRedisSerializer);
-        template.setHashKeySerializer(stringRedisSerializer);
-        template.setHashValueSerializer(fastJsonRedisSerializer);
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
+        template.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
         return template;
     }
 
@@ -47,7 +43,7 @@ public class RedisConfig {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
         RedisCacheConfiguration redisCacheConfiguration =
                 config.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                        .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericFastJsonRedisSerializer()));
+                        .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new Jackson2JsonRedisSerializer<>(Object.class)));
         return RedisCacheManager.builder(factory).cacheDefaults(redisCacheConfiguration).build();
     }
 
@@ -64,7 +60,6 @@ public class RedisConfig {
 
     /**
      * 对redis字符串类型数据操作
-     *
      * @param redisTemplate
      * @return
      */
@@ -75,7 +70,6 @@ public class RedisConfig {
 
     /**
      * 对链表类型的数据操作
-     *
      * @param redisTemplate
      * @return
      */

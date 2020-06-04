@@ -15,5 +15,4 @@ public class JedisClient {
     public JedisPool jedisPool(){
         return new JedisPool("10.0.12.74", 6379);
     }
-
 }
