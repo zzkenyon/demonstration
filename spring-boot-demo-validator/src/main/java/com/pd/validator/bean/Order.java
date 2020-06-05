@@ -23,8 +23,7 @@ public class Order {
     private String customName;
     private Double account;
     */
-    @NotNull
-    @Valid
+
     private List<OrderItem> itemList;
 
     public Order setOrderId(String id){

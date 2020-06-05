@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2019-12-1 20:20
  */
 @RestController
+@RequestMapping("/service")
 public class ServiceValidController {
     @Autowired
     OrderService orderService;
