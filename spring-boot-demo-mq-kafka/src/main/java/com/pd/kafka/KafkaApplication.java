@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @SpringBootApplication
 @RestController
-public class SpringBootDemoMqKafkaApplication {
+public class KafkaApplication {
     KafkaUserProducer producer;
     @Autowired
     public void setProducer(KafkaUserProducer producer){
@@ -22,7 +22,7 @@ public class SpringBootDemoMqKafkaApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootDemoMqKafkaApplication.class, args);
+        SpringApplication.run(KafkaApplication.class, args);
     }
 
     @GetMapping(value = "/send")

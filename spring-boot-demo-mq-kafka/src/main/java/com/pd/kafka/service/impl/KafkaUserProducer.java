@@ -18,16 +18,16 @@ import java.util.Map;
 @Service
 @Slf4j
 public class KafkaUserProducer implements MqProducer<User> {
-    private KafkaTemplate<String,String> kafkaTemplate;
+    private KafkaTemplate<String,Object> kafkaTemplate;
     @Autowired
-    public void setKafkaTemplate(KafkaTemplate<String,String> template){
+    public void setKafkaTemplate(KafkaTemplate<String,Object> template) {
         this.kafkaTemplate = template;
     }
 
     @Override
     public void send(String topic, String key, User value) {
-        String jsonStr = JSON.toJSONString(value);
-        kafkaTemplate.send(topic,key,jsonStr);
+   //     String jsonStr = JSON.toJSONString(value);
+        kafkaTemplate.send(topic,key,value);
     }
 
     @Override

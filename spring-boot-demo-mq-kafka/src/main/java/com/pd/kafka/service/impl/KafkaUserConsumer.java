@@ -20,9 +20,9 @@ public class KafkaUserConsumer {
     @KafkaListener(topics = KafkaConstant.TOPIC_TEST, containerFactory = "ackContainerFactory")
     public void handleMessage(ConsumerRecord record, Acknowledgment acknowledgment) {
         try {
-            String message = (String) record.value();
-            User u = JSON.parseObject(message,User.class);
-            log.info("收到消息: {}", u.toString());
+            Object message = record.value();
+ //           User u = JSON.parseObject(message,User.class);
+            log.info("收到消息: {}", message.toString());
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         } finally {

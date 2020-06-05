@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+    kafka:
+      bootstrap-servers: 192.168.2.112:9092,192.168.2.113:9092,192.168.2.114:9092
+      producer:
+        acks: 1
+        batch-size: 16384
+        buffer-memory: 33554432
+        client-id: spring-boot-demo-mq-kafka
+        retries: 0
+      consumer:
+        group-id: spring-boot-demo
+        auto-commit-interval: 1
+        enable-auto-commit: true
+        auto-offset-reset: earliest
