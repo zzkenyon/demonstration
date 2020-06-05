@@ -1,6 +1,6 @@
 package com.pd.redis.globalconf;
 
-import com.pd.redis.service.RedisService;
+import com.pd.redis.cache.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

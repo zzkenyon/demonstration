@@ -1,7 +1,6 @@
-package com.pd.redis.service.impl;
+package com.pd.redis.cache;
 
 import com.pd.redis.common.User;
-import com.pd.redis.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;

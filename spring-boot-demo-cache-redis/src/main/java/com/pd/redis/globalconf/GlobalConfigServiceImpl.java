@@ -1,7 +1,7 @@
 package com.pd.redis.globalconf;
 
 import com.alibaba.fastjson.JSON;
-import com.pd.redis.service.RedisService;
+import com.pd.redis.cache.RedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

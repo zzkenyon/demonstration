@@ -1,7 +1,6 @@
 package com.pd.redis.cache;
 
 import com.pd.redis.common.User;
-import com.pd.redis.service.RedisService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
