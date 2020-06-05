@@ -1,4 +1,4 @@
-package com.pd.redis.lock;
+package com.pd.redis.dislock;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.pd.redis.lock;
+package com.pd.redis.dislock;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -25,7 +25,7 @@ public class RedisLockAspect {
         this.redisMutex = redisMutex;
     }
 
-    @Pointcut("@annotation(com.pd.redis.lock.RedisLock)")
+    @Pointcut("@annotation(com.pd.redis.dislock.RedisLock)")
     public void doLock(){
 
     }

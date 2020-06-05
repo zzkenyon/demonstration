@@ -1,4 +1,4 @@
-package com.pd.redis.lock;
+package com.pd.redis.dislock;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

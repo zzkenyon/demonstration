@@ -1,4 +1,4 @@
-package com.pd.redis.bean;
+package com.pd.redis.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

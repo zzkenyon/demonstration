@@ -1,4 +1,4 @@
-package com.pd.redis.lock;
+package com.pd.redis.dislock;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

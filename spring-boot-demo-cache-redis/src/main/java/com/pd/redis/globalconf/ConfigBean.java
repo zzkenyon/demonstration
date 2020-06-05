@@ -1,4 +1,4 @@
-package com.pd.redis.bean;
+package com.pd.redis.globalconf;
 
 import lombok.Data;
 

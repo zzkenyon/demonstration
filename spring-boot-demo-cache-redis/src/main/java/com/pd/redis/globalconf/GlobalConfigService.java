@@ -1,6 +1,4 @@
-package com.pd.redis.service;
-
-import com.pd.redis.bean.ConfigBean;
+package com.pd.redis.globalconf;
 
 public interface GlobalConfigService {
     void updateConfig(ConfigBean config);

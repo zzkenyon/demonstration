@@ -1,4 +1,4 @@
-package com.pd.redis.service.impl;
+package com.pd.redis.globalconf;
 
 import com.pd.redis.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package com.pd.redis.service;
+package com.pd.redis.cache;
 
-import com.pd.redis.bean.User;
+import com.pd.redis.common.User;
 
 public interface UserService {
     /**

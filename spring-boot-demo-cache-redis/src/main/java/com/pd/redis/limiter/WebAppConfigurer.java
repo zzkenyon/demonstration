@@ -1,4 +1,4 @@
-package com.pd.redis.config;
+package com.pd.redis.limiter;
 
 import com.pd.redis.limiter.LimiterInterceptor;
 import org.springframework.context.annotation.Bean;

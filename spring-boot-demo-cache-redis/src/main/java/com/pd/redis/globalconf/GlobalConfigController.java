@@ -1,7 +1,7 @@
-package com.pd.redis;
+package com.pd.redis.globalconf;
 
-import com.pd.redis.bean.ConfigBean;
-import com.pd.redis.service.GlobalConfigService;
+import com.pd.redis.globalconf.ConfigBean;
+import com.pd.redis.globalconf.GlobalConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.*;
