@@ -41,13 +41,7 @@ public class RabbitConfig {
 //        template.setMessageConverter(new Jackson2JsonMessageConverter());
         return template;
     }*/
-
-    /*@Bean
-    public SimpleMessageListenerContainer container( ) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory());
-        container.setConsumerTagStrategy(queue -> null);
-        return container;
-    }*/
+    
 
     @Bean("topicExchange")
     public TopicExchange topicExchange(){

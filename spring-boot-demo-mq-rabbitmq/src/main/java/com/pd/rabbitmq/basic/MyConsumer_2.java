@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RabbitListener(queues = "PANDA_SECOND_QUEUE")
 public class MyConsumer_2 {
-    @RabbitHandler
+    @RabbitHandler()
     public void onMessage(@Payload User msg){
         System.out.println(msg.toString());
     }

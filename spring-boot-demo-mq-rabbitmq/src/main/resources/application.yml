@@ -1,0 +1,13 @@
+
+spring:
+  rabbitmq:
+    addresses: 10.0.12.74:5672
+    username: admin
+    password: admin
+
+
+
+
+logging:
+  level:
+    root: error
