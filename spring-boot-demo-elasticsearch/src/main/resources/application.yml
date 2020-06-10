@@ -1,2 +1,7 @@
+
+spring:
+  application:
+    name: es-demo
+
 logging:
   config: classpath:log-config.xml

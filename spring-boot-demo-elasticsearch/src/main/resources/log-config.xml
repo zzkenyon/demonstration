@@ -26,6 +26,7 @@
         <param name="Encoding" value="UTF-8"/>
         <destination>10.0.12.72:10514</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+            <!--根据不同的项目进行修改-->
             <customFields>{"appname":"myapp"}</customFields>
         </encoder>
         <connectionStrategy>
