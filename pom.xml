@@ -35,6 +35,8 @@
         <module>spring-boot-demo-orm-jdbc</module>
         <module>spring-boot-demo-orm-hibernate</module>
         <module>spring-boot-dubbo-demo-provider</module>
+        <module>spring-boot-dubbo-demo-consumer</module>
+        <module>spring-boot-dubbo-demo-api</module>
     </modules>
 
     <properties>
