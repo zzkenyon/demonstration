@@ -1,0 +1,10 @@
+dubbo:
+  application:
+    name: consumer-1
+  protocol:
+    port: 20881
+
+  registry:
+    id: redis
+    address: redis://10.0.12.74:6379
+

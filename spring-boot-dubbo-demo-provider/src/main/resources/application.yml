@@ -1,0 +1,10 @@
+
+dubbo:
+  application:
+    name: provider-1
+  protocol:
+    name: dubbo
+    port: 20880
+  registry:
+    protocol: redis
+    address: 10.0.12.74:6379
