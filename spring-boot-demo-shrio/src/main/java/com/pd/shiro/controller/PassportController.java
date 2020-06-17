@@ -7,7 +7,6 @@ package com.pd.shiro.controller;/**
 
 import com.pd.shiro.accesstoken.AccessTokenService;
 import com.pd.shiro.accesstoken.Number;
-import com.pd.shiro.model.LoginVo;
 import com.pd.shiro.model.User;
 import com.pd.shiro.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -16,12 +15,10 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
