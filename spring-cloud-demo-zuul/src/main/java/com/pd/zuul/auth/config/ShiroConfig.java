@@ -1,9 +1,10 @@
 package com.pd.zuul.auth.config;
 
 
-import com.pd.zuul.auth.filter.AccessTokenLonginFilter;
+import com.pd.zuul.auth.filter.AccessTokenAuthorizedFilter;
+import com.pd.zuul.auth.filter.AccessTokenLoginFilter;
 import com.pd.zuul.auth.matcher.AccessTokenCredentialsMatcher;
-import com.pd.zuul.auth.matcher.SqlDatabaseCredentialsMatcher;
+import com.pd.zuul.auth.matcher.RetryLimitHashedCredentialsMatcher;
 import com.pd.zuul.auth.realm.AccessTokenRealm;
 import com.pd.zuul.auth.realm.SqlDatabaseRealm;
 import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
@@ -28,7 +29,7 @@ import java.util.*;
  * @author zhaozhengkang
  */
 @Configuration
-public class ShiroConfiguration {
+public class ShiroConfig {
 
     /**
      * 项目启动，shiroFilter首先会被初始化,并且逐层传入SecurityManager，Realm，matcher
@@ -39,42 +40,26 @@ public class ShiroConfiguration {
     public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager") SecurityManager manager){
 
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
-
         Map<String, Filter> filterMap = new HashMap<>(16);
-        filterMap.put("tokenFilter", new AccessTokenLonginFilter());
-        factoryBean.setFilters(filterMap);
-
+        AccessTokenAuthorizedFilter accessTokenAuthorizedFilter = new AccessTokenAuthorizedFilter(new String[]{"edit"});
+        accessTokenAuthorizedFilter.setName("ps");
+        factoryBean.getFilters().put("tokenLogin", new AccessTokenLoginFilter());
+        factoryBean.getFilters().put("psedit",accessTokenAuthorizedFilter);
         factoryBean.setSecurityManager(manager);
-        factoryBean.setUnauthorizedUrl("/401");
-        //登陆界面
-//        factoryBean.setLoginUrl("/login");
-        //成功后页面
-//        bean.setSuccessUrl("/index");
-        //无权限后的页面
-//        bean.setUnauthorizedUrl("/unauthorized");
-        //键值对:请求-拦截器(权限配置)
-
+        factoryBean.setLoginUrl("/logined");
         LinkedHashMap<String,String> filterRuleMap = new LinkedHashMap<String, String>();
-        //首页地址index，使用authc过滤器进行处理
-//        filterRuleMap.put("/index","authc");
-        //登陆不需要任何过滤
-        //filterRuleMap.put("/login","anon");
-        //不做身份验证
-//        filterRuleMap.put("/loginUser","anon");
-        //只有角色中拥有admin才能访问admin
-//        filterRuleMap.put("/admin","roles[admin]");
+        filterRuleMap.put("/passport/login","anon");
         //拥有edit权限
-//        filterRuleMap.put("/edit","perms[edit]");
-        //druid
- //       filterRuleMap.put("/druid/**","anon");
-        //其他请求只验证是否登陆过
-        filterRuleMap.put("/login","anon");
-        filterRuleMap.put("/user-api/**","tokenFilter");
-        filterRuleMap.put("/**","tokenFilter");
+        filterRuleMap.put("/user-provider/user/edit","psedit");
+        //filterRuleMap.put("/user-provider/user/edit","perms[edit]");
+        //其他请求只验证token
+        filterRuleMap.put("/**","tokenLogin");
         //放入Shiro过滤器
         factoryBean.setFilterChainDefinitionMap(filterRuleMap);
         return factoryBean;
     }
+
+
 
     /**
      * 将定义好的Realm放入安全会话中心
@@ -91,7 +76,6 @@ public class ShiroConfiguration {
         realms.add(sqlDatabaseRealm);
         realms.add(accessTokenRealm);
         manager.setRealms(realms);
-
         /*
          * 关闭shiro自带的session，详情见文档
          * http://shiro.apache.org/session-management.html#SessionManagement-StatelessApplications%28Sessionless%29
@@ -115,14 +99,22 @@ public class ShiroConfiguration {
         return modularRealmAuthenticator;
     }
 
+
+    @Bean("retryLimitHashedCredentialsMatcher")
+    public RetryLimitHashedCredentialsMatcher retryLimitHashedCredentialsMatcher(){
+          RetryLimitHashedCredentialsMatcher matcher = new RetryLimitHashedCredentialsMatcher();
+          matcher.setHashAlgorithmName("MD5");
+          matcher.setHashIterations(2);
+          return matcher;
+    }
     /**
      * 将自定义的校验规格放入Realm
      * @param matcher
      * @return
      */
     @Bean("sqlDatabaseRealm")
-    public SqlDatabaseRealm sqlDatabaseRealm(@Qualifier("sqlDatabaseCredentialsMatcher") SqlDatabaseCredentialsMatcher matcher){
-
+    public SqlDatabaseRealm sqlDatabaseRealm(
+            @Qualifier("retryLimitHashedCredentialsMatcher") RetryLimitHashedCredentialsMatcher matcher){
         SqlDatabaseRealm sqlDatabaseRealm = new SqlDatabaseRealm();
         //信息放入缓存
         sqlDatabaseRealm.setCacheManager(new MemoryConstrainedCacheManager());
@@ -130,25 +122,19 @@ public class ShiroConfiguration {
         return sqlDatabaseRealm;
     }
 
+    @Bean("accessTokenCredentialsMatcher")
+    public AccessTokenCredentialsMatcher accessTokenCredentialsMatcher(){
+        return new AccessTokenCredentialsMatcher();
+    }
     @Bean("accessTokenRealm")
-    public AccessTokenRealm accessTokenRealm(@Qualifier("accessTokenCredentialsMatcher")AccessTokenCredentialsMatcher matcher){
+    public AccessTokenRealm accessTokenRealm(
+            @Qualifier("accessTokenCredentialsMatcher")AccessTokenCredentialsMatcher matcher){
         AccessTokenRealm accessTokenRealm = new AccessTokenRealm();
         accessTokenRealm.setCredentialsMatcher(matcher);
         return accessTokenRealm;
     }
 
-    /**
-     * 校验规则
-     * @return 校验实例
-     */
-    @Bean("sqlDatabaseCredentialsMatcher")
-    public SqlDatabaseCredentialsMatcher sqlDatabaseCredentialsMatcher(){
-        return  new SqlDatabaseCredentialsMatcher();
-    }
-    @Bean("accessTokenCredentialsMatcher")
-    public AccessTokenCredentialsMatcher accessTokenCredentialsMatcher(){
-        return new AccessTokenCredentialsMatcher();
-    }
+
 
     /**
      * Spring与 Shiro 关联
@@ -156,8 +142,8 @@ public class ShiroConfiguration {
      * @return
      */
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("securityManager") SecurityManager manager){
-
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
+            @Qualifier("securityManager") SecurityManager manager){
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(manager);
         return advisor;

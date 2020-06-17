@@ -1,14 +1,13 @@
 package com.pd.zuul.auth.service.impl;
 
 
-import ch.qos.logback.core.util.TimeUtil;
-import com.pd.zuul.auth.config.RedisConnector;
 import com.pd.zuul.auth.mapper.UserMapper;
-import com.pd.zuul.auth.matcher.AccessTokenCredentialsMatcher;
 import com.pd.zuul.auth.model.User;
 import com.pd.zuul.auth.service.TokenService;
 import com.pd.zuul.auth.service.UserService;
+import com.pd.zuul.auth.realm.PasswordHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,17 +27,19 @@ public class UserServiceImpl implements UserService {
 
     private static final int LOGIN_ERROR_TIME = 10 * 60;
     private static final String REDIS_LOCK_PREFIX = "user:login-error";
-
-    @Resource
-    private RedisConnector redisConnector;
+    @Autowired
+    private ValueOperations<String, Object> redisOps;
     @Resource
     private UserMapper userMapper;
     @Autowired
     private TokenService tokenService;
+    @Autowired
+    private PasswordHelper passwordHelper;
 
     @Override
-    public User createUser(User user) {
-        return null;
+    public Integer createUser(User user) {
+        passwordHelper.encryptPassword(user);
+        return userMapper.insertOne(user);
     }
 
     @Override
@@ -83,7 +84,6 @@ public class UserServiceImpl implements UserService {
             userInfo.setLoginCount(userInfo.getLoginCount()+1);
         }
         String uid = String.valueOf(userInfo.getUid());
-        addLoginErrorLimit(uid, LOGIN_ERROR_TIME, 0);
         userMapper.modify(userInfo);
         return tokenService.generateAccessToken(uid);
     }
@@ -93,23 +93,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.findUserByUid(userId);
     }
 
-    /**
-     * 记录错误次数
-     * 1表示增加一次 0 表示清空
-     */
-    public void addLoginErrorLimit(String key, int time, int i) {
-        if(i == 1) {
-            Object count = redisConnector.get(REDIS_LOCK_PREFIX, key);
-            if(count == null) {
-                redisConnector.put(REDIS_LOCK_PREFIX, key, "1",1800);
-            }else {
-                redisConnector.inc(REDIS_LOCK_PREFIX, key);
-            }
-        }
-        if(i == 0) {
-            redisConnector.delete(REDIS_LOCK_PREFIX, key);
-        }
-    }
 
 
     private String getClientIp(HttpServletRequest request) {

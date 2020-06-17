@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2020/3/23 10:58
  */
 @RestController
+@RequestMapping("/passport")
 public class PassportController implements ApplicationContextAware {
 
     private UserService userService;
@@ -47,7 +48,7 @@ public class PassportController implements ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public User login(@Validated LoginVo info, HttpServletRequest request, HttpServletResponse response){
         Subject subject = SecurityUtils.getSubject();
         AuthenticationToken token = null;
@@ -68,7 +69,7 @@ public class PassportController implements ApplicationContextAware {
         subject.login(token);
         User user = userService.findUserByUserName(info.getUserName());
         String accessToken = userService.login(user,request);
-        setAccessToken(response,accessToken,Number.getHexStr(user.getUid()));
+        setAccessToken(response,accessToken,Number.getHexStr(user.getUid().toString()));
         return user;
     }
 

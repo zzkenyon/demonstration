@@ -1,11 +1,13 @@
 package com.pd.provider.controller;
 
 import com.pd.provider.bean.User;
+import com.pd.provider.common.bean.RestResponseEntity;
 import com.pd.provider.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author zhaozhengkang
@@ -21,9 +23,14 @@ public class UserController {
         this.userService = service;
     }
 
-    @RequestMapping("/user/{id}") //user/1
+    @GetMapping("/user/{id}") //user/1
     public User getUser(@PathVariable("id") Long id) {
         // 正常应该调用service获取用户,现在模拟一下
         return userService.get(id);
+    }
+
+    @PutMapping(value = "/user/edit",produces = "application/json;charset=utf-8")
+    public ResponseEntity editUser(@RequestBody List<User> newUsers){
+        return RestResponseEntity.ok(userService.edit(newUsers));
     }
 }

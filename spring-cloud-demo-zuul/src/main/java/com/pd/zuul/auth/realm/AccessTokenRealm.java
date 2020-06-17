@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -55,7 +56,13 @@ public class AccessTokenRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         //session中获取用户
-        User user = (User) principals.fromRealm(this.getClass().getName()).iterator().next();
+        User user;
+        Collection users =  principals.fromRealm(this.getClass().getName());
+        if(users.isEmpty()){
+            return null ;
+        } else{
+            user = (User)users.iterator().next();
+        }
         //权限集合
         List<String> permissionList = new ArrayList<>();
         //角色集合

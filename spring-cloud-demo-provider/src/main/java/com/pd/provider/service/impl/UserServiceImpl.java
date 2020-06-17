@@ -3,11 +3,11 @@ package com.pd.provider.service.impl;
 import com.pd.provider.bean.User;
 import com.pd.provider.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.internal.Maps;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -61,5 +61,10 @@ public class UserServiceImpl implements IUserService {
     public void delete(Long id) {
         DATABASES.remove(id);
         log.info("删除用户【id】= {}", id);
+    }
+
+    @Override
+    public User edit(List<User> newUser) {
+        return newUser.get(0);
     }
 }

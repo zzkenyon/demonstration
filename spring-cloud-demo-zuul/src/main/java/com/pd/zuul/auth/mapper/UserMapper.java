@@ -32,7 +32,7 @@ public interface UserMapper {
      * @param userName 用户名
      * @return
      */
-    @Select("SELECT uid,user_name,password,login_count FROM user WHERE user_name = #{userName}")
+    @Select("SELECT uid,user_name,password,public_salt,login_count FROM user WHERE user_name = #{userName}")
     @Results(id = "userMap",value = {
             @Result(id = true, column = "uid", property = "uid"),
            /* @Result(property = "userName",column = "user_name"),
@@ -62,4 +62,7 @@ public interface UserMapper {
 
     @Select("SELECT * FROM permission WHERE pid IN (SELECT pid FROM role_permission WHERE rid = #{rid})")
     Set<Permission> findPermissionsByRid(@Param("rid") Integer rid);
+
+    @Insert("INSERT INTO user (user_name,password,public_salt) values(#{userName},#{password},#{publicSalt})")
+    Integer insertOne(User user);
 }

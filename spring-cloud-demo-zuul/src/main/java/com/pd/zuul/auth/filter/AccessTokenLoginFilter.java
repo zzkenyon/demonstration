@@ -1,4 +1,5 @@
-package com.pd.zuul.auth.filter;/**
+package com.pd.zuul.auth.filter;
+/**
  * @author zhaozhengkang
  * @description
  * @version
@@ -30,7 +31,7 @@ import java.io.IOException;
  * @version
  * @date 2020/3/23 10:37
  */
-public class AccessTokenLonginFilter extends AuthenticatingFilter {
+public class AccessTokenLoginFilter extends AuthenticatingFilter {
 
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
@@ -58,7 +59,7 @@ public class AccessTokenLonginFilter extends AuthenticatingFilter {
         return null;
     }
     @Override
-    protected boolean executeLogin(ServletRequest request, ServletResponse response) {
+    protected boolean  executeLogin(ServletRequest request, ServletResponse response) {
         AuthenticationToken token = createToken(request,response);
         if(token == null){
             return onLoginFailure(null,null,request,response);

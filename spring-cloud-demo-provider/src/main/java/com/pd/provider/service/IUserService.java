@@ -2,6 +2,8 @@ package com.pd.provider.service;
 
 import com.pd.provider.bean.User;
 
+import java.util.List;
+
 /**
  * @author zhaozhengkang
  * @description
@@ -22,4 +24,6 @@ public interface IUserService {
      * @param id key值
      */
     void delete(Long id);
+
+    User edit(List<User> newUser);
 }

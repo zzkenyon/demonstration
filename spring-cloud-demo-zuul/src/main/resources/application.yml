@@ -1,6 +1,7 @@
 server:
   port: 7001
 
+
 spring:
   application:
     name: zuul-service
@@ -34,15 +35,5 @@ eureka:
 
 #路由可以不配置，默认使用服务名称即可请求服务的api
 #如下配置将使用path指定的路径请求服务api，可以隐藏服务名称
-zuul:
-  routes:
-    user-provider:
-      path: /user-api/**
-      serviceId: user-provider
-    zuul-provider:
-      path: /passport/**
-      serviceId: zuul-service
 
-    user-provider-2:
-      path: /user-api/**
-      url: http://localhost:8002/
+
