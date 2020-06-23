@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: Transacation-demo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: C!Fr0ShoW9Nu #pJp&Zzk3213
+    url: jdbc:mysql://10.0.12.72:3306/mybatis-demo?characterEncoding=utf8&useSSL=true&serverTimezone=UTC&zeroDateTimeBehavior=CONVERT_TO_NULL
+    data-password:
+
