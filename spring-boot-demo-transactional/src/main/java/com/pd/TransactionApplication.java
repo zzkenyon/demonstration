@@ -2,6 +2,8 @@ package com.pd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext;
+import org.springframework.transaction.PlatformTransactionManager;
 
 /**
  * @author zhaozhengkang
@@ -11,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TransactionApplication {
     public static void main(String[] args) {
-        SpringApplication.run(TransactionApplication.class,args);
+        AnnotationConfigServletWebServerApplicationContext context =  (AnnotationConfigServletWebServerApplicationContext)SpringApplication.run(TransactionApplication.class,args);
+        System.out.println(context.getBean(PlatformTransactionManager.class));
     }
 }

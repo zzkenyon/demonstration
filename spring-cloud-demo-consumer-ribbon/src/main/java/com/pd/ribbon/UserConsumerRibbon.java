@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
  * @date 2020-1-1 15:34
  */
 @SpringBootApplication
-@EnableCircuitBreaker
+//@EnableCircuitBreaker
 public class UserConsumerRibbon {
     public static void main(String[] args) {
         SpringApplication.run(UserConsumerRibbon.class);

@@ -1,7 +1,6 @@
 package com.pd.zuul.auth.config;
 
 
-import com.pd.zuul.auth.filter.AccessTokenAuthorizedFilter;
 import com.pd.zuul.auth.filter.AccessTokenLoginFilter;
 import com.pd.zuul.auth.matcher.AccessTokenCredentialsMatcher;
 import com.pd.zuul.auth.matcher.RetryLimitHashedCredentialsMatcher;
@@ -41,17 +40,14 @@ public class ShiroConfig {
 
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         Map<String, Filter> filterMap = new HashMap<>(16);
-        AccessTokenAuthorizedFilter accessTokenAuthorizedFilter = new AccessTokenAuthorizedFilter(new String[]{"edit"});
-        accessTokenAuthorizedFilter.setName("ps");
-        factoryBean.getFilters().put("tokenLogin", new AccessTokenLoginFilter());
-        factoryBean.getFilters().put("psedit",accessTokenAuthorizedFilter);
+        filterMap.put("tokenLogin", new AccessTokenLoginFilter());
+        factoryBean.setFilters(filterMap);
         factoryBean.setSecurityManager(manager);
         factoryBean.setLoginUrl("/logined");
         LinkedHashMap<String,String> filterRuleMap = new LinkedHashMap<String, String>();
         filterRuleMap.put("/passport/login","anon");
         //拥有edit权限
-        filterRuleMap.put("/user-provider/user/edit","psedit");
-        //filterRuleMap.put("/user-provider/user/edit","perms[edit]");
+        filterRuleMap.put("/user-provider/user/edit","tokenLogin,perms[edit]");
         //其他请求只验证token
         filterRuleMap.put("/**","tokenLogin");
         //放入Shiro过滤器

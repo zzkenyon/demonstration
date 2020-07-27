@@ -16,3 +16,11 @@ management:
       exposure:
         include: "*,hystrix.stream"
 
+USER-PROVIDER:
+  ribbon:
+    #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
+    #NFLoadBalancerRuleClassName: com.pd.ribbon.ribbon.MyRule
+    NFLoadBalancerClassName:
+    NFLoadBalancerPingClassName:
+    #NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    NIWSServerListFilterClassName:

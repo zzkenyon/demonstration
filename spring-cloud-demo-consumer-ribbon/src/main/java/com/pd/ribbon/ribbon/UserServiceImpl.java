@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @HystrixCommand(fallbackMethod = "getUserFallback")
+//    @HystrixCommand(fallbackMethod = "getUserFallback")
     public User getUser(Long id) {
         //调用远程服务 http请求
         String url = URL_PREFIX+"/user/"+id;

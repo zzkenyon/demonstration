@@ -22,21 +22,29 @@
         <module>spring-boot-demo-mongodb</module>
         <module>spring-boot-demo-zookeeper</module>
         <module>spring-boot-demo-validator</module>
-        <module>spring-cloud-demo-eurake</module>
-        <module>spring-cloud-demo-provider</module>
-        <module>spring-cloud-demo-provider-2</module>
-        <module>spring-cloud-demo-consumer-feign</module>
-        <module>spring-cloud-demo-consumer-ribbon</module>
-        <module>spring-cloud-demo-zuul</module>
-        <module>spring-cloud-demo-hystrix-dashboard</module>
+        <module>spring-boot-demo-transactional</module>
         <module>spring-boot-demo-shrio</module>
         <module>spring-boot-demo-cache-memcache</module>
         <module>spring-boot-demo-elasticsearch</module>
         <module>spring-boot-demo-orm-jdbc</module>
         <module>spring-boot-demo-orm-hibernate</module>
+
         <module>spring-boot-dubbo-demo-provider</module>
         <module>spring-boot-dubbo-demo-consumer</module>
         <module>spring-boot-dubbo-demo-api</module>
+
+        <module>spring-cloud-demo-eurake</module>
+        <module>spring-cloud-demo-service-pay</module>
+        <module>spring-cloud-demo-service-order</module>
+        <module>spring-cloud-demo-service-user</module>
+        <module>spring-cloud-demo-consumer-feign</module>
+        <module>spring-cloud-demo-consumer-ribbon</module>
+        <module>spring-cloud-demo-zuul</module>
+        <module>spring-cloud-demo-hystrix-dashboard</module>
+        <module>spring-cloud-demo-stock</module>
+        <module>spring-cloud-demo-integral</module>
+        <module>spring-cloud-demo-service-order/order-service-api</module>
+        <module>spring-cloud-demo-service-order/order-service-provider</module>
     </modules>
 
     <properties>
@@ -45,8 +53,8 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.boot.version>2.2.0.RELEASE</spring.boot.version>
-        <spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
+        <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.SR6</spring.cloud.version>
         <mysql.version>8.0.12</mysql.version>
         <hutool.version>5.0.0</hutool.version>
         <guava.version>28.1-jre</guava.version>
