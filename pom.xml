@@ -28,23 +28,15 @@
         <module>spring-boot-demo-elasticsearch</module>
         <module>spring-boot-demo-orm-jdbc</module>
         <module>spring-boot-demo-orm-hibernate</module>
-
         <module>spring-boot-dubbo-demo-provider</module>
         <module>spring-boot-dubbo-demo-consumer</module>
         <module>spring-boot-dubbo-demo-api</module>
-
         <module>spring-cloud-demo-eurake</module>
-        <module>spring-cloud-demo-service-pay</module>
-        <module>spring-cloud-demo-service-order</module>
-        <module>spring-cloud-demo-service-user</module>
         <module>spring-cloud-demo-consumer-feign</module>
         <module>spring-cloud-demo-consumer-ribbon</module>
         <module>spring-cloud-demo-zuul</module>
         <module>spring-cloud-demo-hystrix-dashboard</module>
-        <module>spring-cloud-demo-stock</module>
         <module>spring-cloud-demo-integral</module>
-        <module>spring-cloud-demo-service-order/order-service-api</module>
-        <module>spring-cloud-demo-service-order/order-service-provider</module>
     </modules>
 
     <properties>
